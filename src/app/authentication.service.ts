@@ -26,13 +26,12 @@ export  class  AuthenticationService {
   }
 
   login(this, email: string, password: string) {
-    auth().setPersistence(auth.Auth.Persistence.LOCAL).then(function(){
-      this.afAuth.signInWithEmailAndPassword(email, password).then(value => {
-        console.log('Nice, it worked!');
-      })
-      .catch(err => {
-      console.log('Something went wrong:',err.message);
-      });
+    auth().setPersistence(auth.Auth.Persistence.LOCAL)
+    this.afAuth.signInWithEmailAndPassword(email, password).then(value => {
+      console.log('Nice, it worked!');
+    })
+    .catch(err => {
+    console.log('Something went wrong:',err.message);
     });
   }
 
