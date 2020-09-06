@@ -1,0 +1,11 @@
+<h1>Update Username</h1>
+<div *ngIf="(authService.user | async)">
+  <input type="text" [(ngModel)]="username" placeholder="username">
+  <button (click)="updateUserName()" [disabled]="!username">
+  Update
+  </button>
+</div>
+
+<div *ngIf="!(authService.user | async)">
+  Login or Register first
+</div>
