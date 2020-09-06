@@ -2,7 +2,7 @@
     <!-- <pagination-controls (pageChange)="page = $event"></pagination-controls> -->
 <ul>
 <div *ngFor="let message of messages | async | reverse |  paginate: { itemsPerPage: pageSize, currentPage: page } ">
-	<li> <div> <h3>  {{ message.author }} ({{message.date}}): {{message.text}}  </h3> </div> </li> 
+	<li> <div> <h3>  {{ message.author }} ({{message.date | date:'medium' }}): {{message.text}}  </h3> </div> </li> 
 </div>
 </ul>
 
