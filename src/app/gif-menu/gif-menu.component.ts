@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { Observable } from 'rxjs';
-import { Message } from '../chat/messages';
+import { Message, MessageType } from '../chat/messages';
 
 import { auth } from  'firebase/app';
 import { User } from  'firebase';
@@ -38,6 +38,7 @@ export class GifMenuComponent implements OnInit {
       this.newMessage.author = uname;
       this.newMessage.date = String(new Date());
       this.newMessage.text = "@Sticker_"+stickerID;
+      this.newMessage.type = MessageType.Gif;
       this.itemsRef.push( this.newMessage );
     })
   }

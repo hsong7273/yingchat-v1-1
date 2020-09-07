@@ -1,14 +1,21 @@
 <button (click)="loadMore()">Load More</button>
-    <!-- <pagination-controls (pageChange)="page = $event"></pagination-controls> -->
+<!-- <pagination-controls (pageChange)="page = $event"></pagination-controls> -->
 <ul>
-<div *ngFor="let message of messages | async | reverse |  paginate: { itemsPerPage: pageSize, currentPage: page } ">
-	<li> <div> <h3>  {{ message.author }} ({{message.date | date:'medium' }}): {{message.text}}  </h3> </div> </li> 
-</div>
+	<div *ngFor="let message of messages | async | reverse |  paginate: { itemsPerPage: pageSize, currentPage: page } ">
+		<li>
+			<div *ngIf="message.type == MessageTypeEnum.Text">
+				<h3> {{ message.author }} ({{message.date | date:'medium' }}): {{message.text}} </h3>
+			</div>
+      <div *ngIf="message.type == MessageTypeEnum.Gif">
+				<h3> {{ message.author }} ({{message.date | date:'medium' }}): <img [src]=getGifPath(message.text) width=50/> </h3>
+			</div>
+		</li>
+	</div>
 </ul>
 
 <div>
 	<form (ngSubmit)="addItem()" #messageForm="ngForm">
-    <div class="form-group">
+		<div class="form-group">
 			<label for="text"></label>
 			<input type="text" class="form-control" id="text"
                required
