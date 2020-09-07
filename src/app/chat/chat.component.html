@@ -25,7 +25,7 @@
 			</div>
 		</div>
 
-		<button type="submit" class="btn btn-success" [disabled]="!messageForm.form.valid">Submit</button>
+		<button *ngIf="authService.user | async" type="submit" class="btn btn-success" [disabled]="!messageForm.form.valid">Submit</button>
 	</form>
 </div>
 
