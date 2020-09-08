@@ -59,11 +59,11 @@ export class GifMenuComponent implements OnInit {
     })
   }
 
-  // getGifPath(stickerID: number): string {
+  getGifPath(stickerID: number): string {
+    //sticker ID
+    var group = Math.floor(stickerID/24+1).toString();
+    var index = (stickerID%24+1).toString();
 
-
-  //   return `https://raw.githubusercontent.com/hsong7273/yingstickers/master/stickers/${stickerID.slice(
-  //     1
-  //   )}.gif`;
-  // }
+    return 'https://raw.githubusercontent.com/hsong7273/yingstickers/master/stickers/Sticker_'+group+'_'+index+'.gif';
+  }
 }

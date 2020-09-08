@@ -7,7 +7,9 @@
   <pagination-controls (pageChange)="page = $event"></pagination-controls>
 
   <a *ngFor="let sticker of stickers | paginate: { itemsPerPage: pageSize, currentPage: page }; index as i">
-    <button (click)="sendSticker(i)"></button>
+    <button (click)="sendSticker(i)">
+     <img [src]=getGifPath(i) width=25> 
+    </button>
 
   </a>
 </div>
