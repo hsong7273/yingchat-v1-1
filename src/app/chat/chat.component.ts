@@ -68,7 +68,7 @@ export class ChatComponent implements OnInit {
   }
 
   getGifPath(sticker: string): string {
-    return `https://raw.githubusercontent.com/hsong7273/yingchat-v1-1/master/src/app/assets/${sticker.slice(
+    return `https://raw.githubusercontent.com/hsong7273/yingstickers/master/stickers/${sticker.slice(
       1
     )}.gif`;
   }
