@@ -7,7 +7,7 @@
 				<h3> {{ message.author }} ({{message.date | date:'medium' }}): {{message.text}} </h3>
 			</div>
       <div *ngIf="message.type == MessageTypeEnum.Gif">
-				<h3> {{ message.author }} ({{message.date | date:'medium' }}): <img [src]=getGifPath(message.text) width=50/></h3>
+				<h3> {{ message.author }} ({{message.date | date:'short' }}): <img [src]=getGifPath(message.text) width=50/></h3>
 			</div>
 		</li>
 	</div>
