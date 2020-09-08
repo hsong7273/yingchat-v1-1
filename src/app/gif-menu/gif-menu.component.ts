@@ -36,27 +36,34 @@ export class GifMenuComponent implements OnInit {
   ngOnInit() {
     this.newMessage = new Message();
     console.log(this.stickers)
+
   }
 
   // Want to split the GIFs into groups of 12
   // Want to use html loop index for group number
   // In code display 24 at once
-  sendSticker(stickerID: string) {
+  sendSticker(stickerID: number) {
+    //sticker ID
+    var group = Math.floor(stickerID/24+1).toString();
+    var index = (stickerID%24+1).toString();
+
     var user = auth().currentUser;
     var unameRef = firebase.database().ref('users/'+user.uid);
     var test = unameRef.on('value', (snapshot)=> {
       var uname = snapshot.val().uname;
       this.newMessage.author = uname;
       this.newMessage.date = String(new Date());
-      this.newMessage.text = "@Sticker_"+stickerID;
+      this.newMessage.text = "@Sticker_"+group+"_"+index;
       this.newMessage.type = MessageType.Gif;
       this.itemsRef.push( this.newMessage );
     })
   }
 
-  getGifPath(sticker: string): string {
-    return `https://raw.githubusercontent.com/hsong7273/yingstickers/master/stickers/${sticker.slice(
-      1
-    )}.gif`;
-  }
+  // getGifPath(stickerID: number): string {
+
+
+  //   return `https://raw.githubusercontent.com/hsong7273/yingstickers/master/stickers/${stickerID.slice(
+  //     1
+  //   )}.gif`;
+  // }
 }
