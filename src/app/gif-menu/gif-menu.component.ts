@@ -35,8 +35,6 @@ export class GifMenuComponent implements OnInit {
 
   ngOnInit() {
     this.newMessage = new Message();
-    console.log(this.stickers)
-
   }
 
   // Want to split the GIFs into groups of 12
