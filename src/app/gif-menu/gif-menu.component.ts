@@ -19,7 +19,7 @@ export class GifMenuComponent implements OnInit {
   newMessage: Message;
   itemsRef: AngularFireList<any>;
   messages: Observable<any[]>;
-  page: number = 0;
+  page: number = 1;
   pageSize: number = 24;
   //number of stickers
   stickers:number[] = new Array(48)
@@ -29,7 +29,7 @@ export class GifMenuComponent implements OnInit {
     this.itemsRef = db.list('messages');
     this.messages = db.list('messages').valueChanges();
     for (var i = 0; i < this.stickers.length; i++){
-      this.stickers[i] = i+1;
+      this.stickers[i] = i;
     }
    }
 
@@ -40,10 +40,10 @@ export class GifMenuComponent implements OnInit {
   // Want to split the GIFs into groups of 12
   // Want to use html loop index for group number
   // In code display 24 at once
-  sendSticker(stickerID: number) {
+  sendSticker(pageID: number, stickerID: number) {
     //sticker ID
-    var group = Math.floor(stickerID/24+1).toString();
-    var index = (stickerID%24+1).toString();
+    var group = (pageID-1).toString();
+    var index = (stickerID%24).toString();
 
     var user = auth().currentUser;
     var unameRef = firebase.database().ref('users/'+user.uid);
@@ -57,10 +57,10 @@ export class GifMenuComponent implements OnInit {
     })
   }
 
-  getGifPath(stickerID: number): string {
+  getGifPath(pageID: number, stickerID: number): string {
     //sticker ID
-    var group = Math.floor(stickerID/24+1).toString();
-    var index = (stickerID%24+1).toString();
+    var group = (pageID-1).toString();
+    var index = (stickerID%24).toString();
 
     return 'https://raw.githubusercontent.com/hsong7273/yingstickers/master/stickers/Sticker_'+group+'_'+index+'.gif';
   }
